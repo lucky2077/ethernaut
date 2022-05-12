@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 
 describe("Quest03", function () {
-  it("Should always return true for guess()", async function () {
+  it("Should always win the guess", async function () {
     const CoinFlip = await ethers.getContractFactory("CoinFlip");
     const coinFlip = await CoinFlip.deploy();
     await coinFlip.deployed();
@@ -18,7 +18,7 @@ describe("Quest03", function () {
       const guessTX = await quest03.guess(coinFlip.address);
       await guessTX.wait();
 
-      expect(await quest03.lastGuess()).to.equal(true);
+      expect(await coinFlip.consecutiveWins()).to.equal(index + 1);
     }
   });
 });
