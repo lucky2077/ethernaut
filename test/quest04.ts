@@ -5,7 +5,9 @@ describe("Quest04", function () {
   it("Should takeover Telephone contract", async function () {
     const [owner, user1] = await ethers.getSigners();
 
-    const Telephone = await ethers.getContractFactory("Telephone");
+    const Telephone = await ethers.getContractFactory(
+      "contracts/Telephone.sol:Telephone"
+    );
     const telephone = await Telephone.deploy();
     await telephone.deployed();
 

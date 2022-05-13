@@ -3,7 +3,7 @@
   "rules": {
     "compiler-version": [
       "error",
-      "^0.6.0"
+      ">=0.6.0"
     ],
     "func-visibility": [
       "warn",

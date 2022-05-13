@@ -6,7 +6,7 @@ describe("Quest05", function () {
   it("Should get additinal tokens", async function () {
     const [owner] = await ethers.getSigners();
 
-    const Token = await ethers.getContractFactory("Token");
+    const Token = await ethers.getContractFactory("contracts/Token.sol:Token");
     const token = await Token.deploy(20);
     await token.deployed();
 

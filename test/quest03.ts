@@ -3,7 +3,9 @@ import { ethers } from "hardhat";
 
 describe("Quest03", function () {
   it("Should always win the guess", async function () {
-    const CoinFlip = await ethers.getContractFactory("CoinFlip");
+    const CoinFlip = await ethers.getContractFactory(
+      "contracts/CoinFlip.sol:CoinFlip"
+    );
     const coinFlip = await CoinFlip.deploy();
     await coinFlip.deployed();
     console.log("coinFlip.address:", coinFlip.address);
