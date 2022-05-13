@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-describe("Quest03", function () {
+describe("Quest04", function () {
   it("Should takeover Telephone contract", async function () {
     const [owner, user1] = await ethers.getSigners();
 

@@ -34,20 +34,33 @@ task("balance", "Prints an account's balance")
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.4",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
+    compilers: [
+      {
+        version: "0.6.6",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
       },
-    },
+      {
+        version: "0.8.4",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+    ],
   },
   networks: {
     rinkeby: {
       url: process.env.RINKEBY_URL || "",
-      gas: 200000000,
-      gasPrice: 200000000000,
-      gasMultiplier: 10,
+      gas: 20000000,
+      gasPrice: 20000000000,
+      gasMultiplier: 2,
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },

@@ -21,6 +21,10 @@ contract Quest04 {
             "changeOwner(address)",
             newOwner
         );
-        telephoneAddress.call(payload);
+
+        (bool success, bytes memory returnData) = telephoneAddress.call(
+            payload
+        );
+        require(success, "Telephone contract call failed");
     }
 }
