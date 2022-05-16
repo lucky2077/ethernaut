@@ -7,7 +7,7 @@ describe("Quest07", () => {
     await force.deployed();
     console.log("force.address:", force.address);
 
-    expect(await force.provider.getBalance(force.address)).to.equal(0);
+    expect(await ethers.provider.getBalance(force.address)).to.equal(0);
 
     const Quest07 = await ethers.getContractFactory("Quest07");
     const quest07 = await Quest07.deploy();
@@ -19,7 +19,7 @@ describe("Quest07", () => {
     });
     await TX.wait();
 
-    expect(await force.provider.getBalance(force.address)).to.equal(
+    expect(await ethers.provider.getBalance(force.address)).to.equal(
       ethers.utils.parseEther("0.1")
     );
   });

