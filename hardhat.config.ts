@@ -38,6 +38,18 @@ task("attack08", "Attacks the contract")
     console.log("The password readable: ", hre.web3.utils.hexToAscii(passwd));
   });
 
+task("attack12", "Attacks Quest 12")
+  .addParam("contract", "The contract's address")
+  .setAction(async (taskArgs, hre) => {
+    const data = await hre.web3.eth.getStorageAt(taskArgs.contract, 5);
+    console.log("The data in hex: ", data);
+    const dataBytes = hre.web3.utils.hexToBytes(data);
+    const dataBytes16 = dataBytes.slice(0, 16);
+    const _key = hre.web3.utils.bytesToHex(dataBytes16);
+    console.log("The data in bytes16", _key);
+    // in web console, execute: contract.unlock(_key)
+  });
+
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
